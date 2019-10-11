@@ -1,0 +1,6 @@
+src/containers/**/*.js
+src/layouts/**/*.js
+src/locales/**/*.js
+src/pages/**/*.js
+src/redux/**/*.js
+src/services/**/*.js

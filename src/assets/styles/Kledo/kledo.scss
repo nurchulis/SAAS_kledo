@@ -1,0 +1,136 @@
+@import 'assets/styles/mixins.scss';
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/*  KLEDO */
+
+.button-table {
+  margin-top: 30px;
+  margin-left: 10px;
+  float: right;
+}
+.button-table-top {
+  margin-bottom: 30px;
+  margin-left: 10px;
+  float: right;
+}
+.hide {
+  display: none,
+}
+.show {
+  display: block,
+}
+.ant-form-item {
+  margin-bottom: 10px !important;
+}
+.ant-form-item-label{
+  margin-bottom: -3px !important;
+}
+
+.hand-row{
+  cursor: pointer;
+}
+
+.bottom-spacing-5{
+  margin-bottom: 5px;
+}
+.bottom-spacing-20{
+  margin-bottom: 20px;
+}
+
+// table rate
+
+
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.2em 0.2em;
+  overflow: hidden; // Or flex might break
+  list-style: none;
+  border: solid 1px #eee;
+  height: 80px;
+  background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+.Rtable-cell-header {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.2em 0.2em;
+  overflow: hidden; // Or flex might break
+  list-style: none;
+  //border: solid 1px #eee;
+  //height: 70px;
+  background: fade(slategrey,20%);
+  
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+/* Table column sizing
+================================== */
+.Rtable--7cols > .Rtable-cell  { width: 14.2857%; }
+.Rtable--7cols > .Rtable-cell-header  { width: 14.2857%; }
+
+/* animation fade-in */
+.fade-in {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}

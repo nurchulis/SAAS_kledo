@@ -1,0 +1,39 @@
+
+/* Demo specifics */
+
+
+.item.not-selectable {
+  background: silver;
+}
+.item .tick {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  color: #009688;
+  font-weight: bold;
+  cursor: pointer;
+}
+/*
+
+.item.selected {
+  background: rebeccapurple;
+  color: white;
+}
+*/
+.item.selecting {
+  background: firebrick;
+}
+.not-selectable {
+  
+}
+
+.nodrop {
+  cursor: no-drop;
+}
+.in-selection-mode .item {
+  cursor: pointer;
+}
+.highlighted{
+  background-color: firebrick
+}

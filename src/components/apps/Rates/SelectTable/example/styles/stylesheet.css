@@ -1,0 +1,77 @@
+
+/* Demo specifics */
+
+.main {
+  padding: 0 10px;
+  border: 1px solid darkcyan;
+  overflow: hidden;
+  height: 80vh;
+  position: relative;
+}
+.selectable-selectbox {
+  z-index: 9000;
+  position: absolute;
+  cursor: default;
+  background: none;
+  border: 1px dashed grey;
+}
+.albums {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* extra items per row to test horizontal scroll handler */
+}
+.album-label {
+  display: block;
+  margin: 5px 0;
+  font-size: smaller;
+}
+.item {
+  position: relative;
+  min-width: 145px;
+  min-height: 125px;
+  margin: 2px;
+  float: left;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: hidden;
+}
+.item.not-selectable {
+  background: silver;
+}
+.item .tick {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  color: #009688;
+  font-weight: bold;
+  cursor: pointer;
+}
+.item h2 {
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: inherit;
+  font-weight: 600;
+}
+.item.selected {
+  background: rebeccapurple;
+  color: white;
+}
+.item.selecting {
+  border: 1px solid rebeccapurple;
+}
+.not-selectable {
+}
+.counter {
+  color: #009688;
+}
+.selectable-button {
+  display: inline-block;
+  margin: 0 3px 10px 3px;
+}
+.in-selection-mode .item {
+  cursor: pointer;
+}

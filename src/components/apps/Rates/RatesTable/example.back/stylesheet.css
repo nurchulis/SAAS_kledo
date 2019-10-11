@@ -1,0 +1,44 @@
+
+/* Demo specifics */
+
+
+.item.not-selectable {
+  background:#eee;
+}
+/*
+
+.item.selected {
+  background: rebeccapurple;
+  color: white;
+}
+*/
+.item.selecting {
+  background-color: rgba(0,160,233,0.7)
+}
+.not-selectable {
+  
+}
+.item{
+  background-color: #F8F8F8;
+}
+.item .date{
+  font-size: 0.85em
+}
+.item .price{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.nodrop {
+  cursor: no-drop;
+  background-color:#fff !important;
+  color: #fff;
+  border: none;
+}
+.in-selection-mode .item {
+  cursor: pointer;
+}
+.highlighted{
+  background-color: rgba(0,160,233,0.7)
+}

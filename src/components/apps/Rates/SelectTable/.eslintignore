@@ -1,0 +1,6 @@
+example/bundle.js
+dist/
+lib/
+build/
+node_modules/
+*/**/*.md

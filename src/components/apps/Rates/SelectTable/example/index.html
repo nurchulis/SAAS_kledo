@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>React-selectable-fast by valerybugakov</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="./styles/normalize.css" media="screen" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="./styles/stylesheet.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./styles/github-light.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <a href="https://github.com/valerybugakov/react-selectable-fast">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png">
+    </a>
+  <section class="page-header">
+    <h1 class="project-name">React-selectable-fast</h1>
+    <h2 class="project-tagline">Enable a React component (or group of components) to be selectable.</h2>
+    <a class="btn" href="https://github.com/valerybugakov/react-selectable-fast">View on GitHub</a>
+    <a class="btn" href="https://github.com/valerybugakov/react-selectable-fast/zipball/master">Download .zip</a>
+    <a class="btn" href="https://github.com/valerybugakov/react-selectable-fast/tarball/master">Download .tar.gz</a>
+  </section>
+
+  <section class="main-content">
+    <h1>
+      react-selectable-fast
+      <img alt="npm" src="https://img.shields.io/npm/v/react-selectable-fast.svg">
+      <img alt="license" src="https://img.shields.io/npm/l/react-selectable-fast.svg">
+      <img alt="github-issues" src="https://img.shields.io/github/issues/valerybugakov/react-selectable-fast.svg">
+    </h1>
+
+    <h2>
+      <a class="anchor" href="#install" id="install">
+          <span class="octicon octicon-link"></span>
+        </a> Install
+    </h2>
+    <div class="highlight highlight-sh">
+      <pre>npm i -S react-selectable-fast</pre>
+    </div>
+    <p>
+      <a href="https://nodei.co/npm/react-selectable-fast">
+          <img alt="react-selectable-fast" src="https://nodei.co/npm/react-selectable-fast.png?downloads=true&amp;downloadRank=true&amp;stars=true">
+        </a>
+    </p>
+
+    <h2><a class="anchor" href="#demo" id="demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+    <p>Draw a box with your mouse/touch to select items. Click on + icon of an individual item to select it.</p>
+    <div id="demo-container"></div>
+
+    <h2><a id="user-content-javascript-environment-requirements" class="anchor" href="#javascript-environment-requirements"></a>JavaScript
+      environment requirements</h2>
+    <p>The React-Selectable-Fast package distributed on NPM use the widely-supported ES5 version of JavaScript to support as
+      many browser environments as possible.</p>
+    <p>However, this package expects modern JavaScript globals (<code>Map</code>, <code>Set</code>,
+      <code>Array.from</code>, <code>Array.isArray</code> <code>Object.assign</code>) to be defined. If you support older
+      browsers and devices which may not yet provide these natively, consider including a global polyfill in your bundled
+      application, such as <a href="https://github.com/zloirock/core-js">core-js</a> or
+      <a href="https://babeljs.io/docs/usage/polyfill/">babel-polyfill</a>.</p>
+    <p>A polyfilled environment for React-Selectable-Fast using <a href="https://github.com/zloirock/core-js">core-js</a> to
+      support older browsers might look like:</p>
+
+    <div class="highlight highlight-source-js">
+      <pre><span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>core-js/fn/object/assign<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>core-js/fn/array/from<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>core-js/fn/array/is-array<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>core-js/fn/map<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>core-js/fn/set<span class="pl-pds">'</span></span>
+
+<span class="pl-k">import</span> <span class="pl-smi">App</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./myApp<span class="pl-pds">'</span></span>;</pre>
+    </div>
+
+    <h2><a class="anchor" href="#usage" id="usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+    <h3><a class="anchor" href="#exemple" id="exemple"><span class="octicon octicon-link"></span></a>Example</h3>
+    <p>Package exports 4 entities <code>{ SelectableGroup, createSelectable, SelectAll, DeselectAll }</code>. To make other
+      components selectable wrap them using HoC <code>createSelectable</code>, add passed <code>selectableRef</code> prop
+      to the target node and put a list of seletable items under <code>SelectableGroup</code>.</p>
+    <div class="highlight highlight-source-js">
+      <pre><span class="pl-k">import</span> <span class="pl-smi">React</span>, { <span class="pl-smi">Component</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> { <span class="pl-smi">SelectableGroup</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-selectable-fast<span class="pl-pds">'</span></span>
+
+<span class="pl-k">class</span> <span class="pl-en">App</span> <span class="pl-k">extends</span> <span class="pl-e">Component</span> {
+  <span class="pl-k">...</span>
+
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>SelectableGroup
+        className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>main<span class="pl-pds">"</span></span>
+        clickClassName<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>tick<span class="pl-pds">"</span></span>
+        enableDeselect
+        tolerance<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">tolerance</span>}
+        globalMouse<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">isGlobal</span>}
+        allowClickWithoutSelected<span class="pl-k">=</span>{<span class="pl-c1">false</span>}
+        duringSelection<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleSelecting</span>}
+        onSelectionClear<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleSelectionClear</span>}
+        onSelectionFinish<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleSelectionFinish</span>}
+        ignoreList<span class="pl-k">=</span>{[<span class="pl-s"><span class="pl-pds">'</span>.not-selectable<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.item:nth-child(10)<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.item:nth-child(27)<span class="pl-pds">'</span></span>]}
+      <span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>List items<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-smi">items</span>} <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+      <span class="pl-k">&lt;</span><span class="pl-k">/</span>SelectableGroup<span class="pl-k">&gt;</span>
+    )
+  }
+}</pre>
+    </div>
+    <div class="highlight highlight-source-js">
+      <pre><span class="pl-k">import</span> <span class="pl-smi">React</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> { <span class="pl-smi">createSelectable</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-selectable-fast<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">SomeComponent</span> <span class="pl-k">=</span> ({ selectableRef, selected, selecting }) <span class="pl-k">=&gt;</span> (
+  <span class="pl-k">&lt;</span>div ref<span class="pl-k">=</span>{selectableRef}<span class="pl-k">&gt;</span><span class="pl-k">...</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+)
+
+<span class="pl-k">export</span> <span class="pl-c1">default</span> <span class="pl-smi">createSelectable</span>(SomeComponent)</pre>
+    </div>
+
+    <div class="highlight highlight-source-js">
+      <pre><span class="pl-k">import</span> <span class="pl-smi">React</span>, { <span class="pl-smi">Component</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> { <span class="pl-smi">createSelectable</span>, <span class="pl-smi">SelectAll</span>, <span class="pl-smi">DeselectAll</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-selectable-fast<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">SomeComponent</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./SomeComponent<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">SelectableComponent</span> <span class="pl-k">=</span> <span class="pl-en">createSelectable</span>(SomeComponent)
+
+<span class="pl-k">class</span> <span class="pl-en">List</span> <span class="pl-k">extends</span> <span class="pl-e">Component</span> {
+  <span class="pl-k">...</span>
+
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>SelectAll className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>selectable-button<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+          <span class="pl-k">&lt;</span>button<span class="pl-k">&gt;</span><span class="pl-c1">Select</span> all<span class="pl-k">&lt;</span><span class="pl-k">/</span>button<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>SelectAll<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>DeselectAll className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>selectable-button<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+          <span class="pl-k">&lt;</span>button<span class="pl-k">&gt;</span>Clear selection<span class="pl-k">&lt;</span><span class="pl-k">/</span>button<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>DeselectAll<span class="pl-k">&gt;</span>
+        {<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-smi">items</span>.<span class="pl-en">map</span>((<span class="pl-smi">item</span>, <span class="pl-smi">i</span>) <span class="pl-k">=&gt;</span> (
+          <span class="pl-k">&lt;</span>SelectableComponent
+            key<span class="pl-k">=</span>{i}
+            title<span class="pl-k">=</span>{<span class="pl-smi">item</span>.<span class="pl-c1">title</span>}
+            year<span class="pl-k">=</span>{<span class="pl-smi">item</span>.<span class="pl-smi">year</span>}
+          <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        ))}
+      <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+    )
+  }
+}</pre>
+    </div>
+    <h3><a class="anchor" href="#props" id="props"><span class="octicon octicon-link"></span></a>Configuration</h3>
+    <ul>
+      <li><code>duringSelection</code> (Function) Callback fired rapidly during selection (while the selector is being dragged).
+        Passes an array containing selectable items currently under the selector to the callback function.</li>
+      <li><code>onSelectionFinish</code> (Function) Callback.</li>
+      <li><code>onSelectionClear</code> (Function) Callback.</li>
+      <li><code>enableDeselect</code> (Boolean) Enables deselect with selectbox.</li>
+      <li><code>mixedDeselect</code> (Boolean) When enabled items can be selected and deselected with selectbox at the same time,
+        <code>enableDeselect</code> should be set to <code>true</code>.</li>
+      <li><code>scrollContainer</code> (String) Selector of scroll container which will be used to calculate selectbox position.
+        If not specified SelectableGroup element will be used as scroll container.</li>
+      <li><code>ignoreList</code> (Array) Array of ignored selectors.</li>
+      <li><code>clickableClassName</code> (String) On element with specified selector click item cotaining this element will
+        be selected.</li>
+      <li><code>tolerance</code> (Number) The amount of buffer to add around your <code>&lt;SelectableGroup /&gt;</code> container,
+        in pixels.</li>
+      <li><code>className</code> (String) Class of selectable group element.</li>
+      <li><code>selectionModeClass</code> (String) Class indicating that there are more than 1 selected item. Defaults to 'in-selection-mode'.</li>
+      <li><code>component</code> (String) The component to render. Defaults to <code>div</code>.</li>
+      <li><code>allowClickWithoutSelected</code> (Boolean) When disabled items can be selected by click only if there are more
+        than 1 already selected item.</li>
+      <li><code>fixedPosition</code> (Boolean) Whether the <code>&lt;SelectableGroup /&gt;</code> container is a fixed/absolute
+        position element or the grandchild of one.</li>
+      <li><code>resetOnStart</code> (Boolean) Unselect all items when you start a new drag. Default value is <code>false</code>.</li>
+      <li><code>disabled</code> (Boolean) Enable or disable the selectable draggable, useful if you want to enable drag of sub-items.
+        Default value is <code>false</code>.</li>
+      <li><code>delta</code> (Number) Value of the CSS transform property scaled list, useful if your list of items in <code>&lt;SelectableGroup /&gt;</code>        is wrapped by a scale css transform property. Default value is <code>1</code>.</li>
+    </ul>
+    <h2><a class="anchor" href="#development" id="development"><span class="octicon octicon-link"></span></a>Development</h2>
+    <h3><a class="anchor" href="#clean-lib-folder" id="clean-lib-folder"><span class="octicon octicon-link"></span></a>Clean
+      <code>lib and dist</code> folders</h3>
+    <div class="highlight highlight-js">
+      <pre>npm run clean</pre>
+    </div>
+    <h3><a class="anchor" href="#watch-src-folder" id="watch-src-folder"><span class="octicon octicon-link"></span></a>Watch
+      <code>src</code> folder</h3>
+    <div class="highlight highlight-js">
+      <pre>npm run watch</pre>
+    </div>
+    <h3><a class="anchor" href="#watch-src-folder" id="watch-src-folder"><span class="octicon octicon-link"></span></a>Start
+      <code>example</code> dev-server</h3>
+    <div class="highlight highlight-js">
+      <pre>npm run watch:example</pre>
+    </div>
+    <h3><a class="anchor" href="#lint-src-folder" id="lint-src-folder"><span class="octicon octicon-link"></span></a>Lint <code>src</code>      folder</h3>
+    <div class="highlight highlight-js">
+      <pre>npm run lint</pre>
+    </div>
+    <h2><a class="anchor" href="#license" id="license"><span class="octicon octicon-link"></span></a>License</h2>
+    <p>See <a href="./LICENSE">MIT</a></p>
+    <footer class="site-footer">
+      <span class="site-footer-owner"><a href="https://github.com/valerybugakov/react-selectable-fast">React-selectable-fast</a></span>
+    </footer>
+    <span class="site-footer-owner"></span>
+  </section>
+  <script src="./bundle.js"></script>
+</body>
+
+</html>
